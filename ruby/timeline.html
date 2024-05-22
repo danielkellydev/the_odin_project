@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Kelly - Timeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #333;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: #333;
+            border: 4px solid #fff;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .right::after {
+            left: -12px;
+        }
+        .content {
+            padding: 20px 30px;
+            background-color: #f1f1f1;
+            position: relative;
+            border-radius: 6px;
+        }
+        .tech {
+            background-color: #c9e8f7;
+        }
+        .non-tech {
+            background-color: #f1f1f1;
+        }
+        .total-time {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="timeline-item left">
+            <div class="content non-tech">
+                <h2>2015 - 2019</h2>
+                <p>Bachelor of Health Science (Chinese medicine) at SSNT College</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="content non-tech">
+                <h2>2017 - 2023</h2>
+                <p>Doctor of Chinese medicine at Tiger Therapies, managing an eCommerce product business</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="content tech">
+                <h2>October 2022 - August 2023 (10 months)</h2>
+                <p>Higher Education Diploma of IT (Full stack Web Development) at Coder Academy</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="content tech">
+                <h2>Oct 2023 - Feb 2023 (12 week internship)</h2>
+                <p>Software Engineer intern at CliniScribe AI, working on an AI-powered clinical reporting tool</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="content tech">
+                <h2>March 2023 - Present</h2>
+                <p>Undertaking the Odin Project to further deepen expertise</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="total-time">
+        <p>Total time since starting tech: <span id="totalTime"></span></p>
+    </div>
+
+    <script>
+        // Calculate the total time since starting tech
+        function calculateTotalTime() {
+            const startDate = new Date('2022-10-01'); // Assuming the start date is October 1, 2022
+            const currentDate = new Date();
+            const timeDiff = Math.abs(currentDate - startDate);
+            const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            const months = Math.floor(days / 30);
+            const years = Math.floor(months / 12);
+
+            let totalTimeString = '';
+            if (years > 0) {
+                totalTimeString += years + (years === 1 ? ' year' : ' years');
+            }
+            if (months % 12 > 0) {
+                totalTimeString += ' ' + (months % 12) + (months % 12 === 1 ? ' month' : ' months');
+            }
+
+            document.getElementById('totalTime').textContent = totalTimeString.trim();
+        }
+
+        // Call the function when the page loads
+        window.onload = calculateTotalTime;
+    </script>
+</body>
+</html>
